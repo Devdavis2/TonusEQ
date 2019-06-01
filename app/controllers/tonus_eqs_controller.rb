@@ -5,12 +5,12 @@ class TonusEqsController < ApplicationController
   def index
     @tonus_eqs = TonusEq.all
 
-    render json: @tonus_eqs
+    render json: @tonus_eqs.to_json(include: :moods)
   end
 
   # GET /tonus_eqs/1
   def show
-    render json: @tonus_eq
+    render json: @tonus_eq.to_json(include: :moods)
   end
 
   # POST /tonus_eqs

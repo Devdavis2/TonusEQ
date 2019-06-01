@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :tonus_eqs 
-    resources :moods
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  Rails.application.routes.draw do
+  resources :moods
+  resources :tonus_eqs, only: [:index, :show] do
+    resources :moods, except: [:show]
+  end
+end
 end
