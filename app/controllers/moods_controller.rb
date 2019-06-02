@@ -3,9 +3,9 @@ class MoodsController < ApplicationController
 
   # GET /moods
   def index
-    @moods = Mood.all
+    moods = Mood.all.where(tonus_eq_id: params[:tonus_eq_id])
 
-    render json: @moods
+    render json: moods
   end
 
   # GET /moods/1
@@ -15,7 +15,8 @@ class MoodsController < ApplicationController
 
   # POST /moods
   def create
-    @mood = Mood.new(mood_params)
+    moods = Mood.where(tonus_eq_id: params[:tonus_eq_id])
+    @mood = moods.new(mood_params)
 
     if @mood.save
       render json: @mood, status: :created, location: @mood
